@@ -1,6 +1,6 @@
 const {addressSchema} = require('./address/addressSchema');
 const userSchema = (address = addressSchema) => ({
-    required: ['id', 'name', 'email', 'address'],
+    required: ['id'],
     type: 'object', 
     properties: {   
         id:{type: 'string'},

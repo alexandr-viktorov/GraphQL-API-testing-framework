@@ -1,6 +1,33 @@
-Local setup: `npm i`
+## Local Setup
 
-Launch all tests: `npm test`
+1. **Clone the repository**
+   ```
+   git clone https://github.com/alexandr-viktorov/GraphQL-API-testing-framework.git
+   cd GraphQL-API-testing-framework
+   ```
+
+2. **Install dependencies**
+   ```
+   npm i
+   ```
+
+3. **Create a `.env` file** in the root directory:
+   ```
+   BASE_URL="https://graphqlzero.almansi.me"
+   ```
+
+## Running Tests
+
+Launch all tests:
+```
+npm test
+```
+
+Generate tests report:
+```
+npm run test:report
+```
+Report will be generated in `./mochawesome-report/mochawesome.html`
 
 ## Stack
 
@@ -39,4 +66,3 @@ Launch all tests: `npm test`
    npm install json-schema
    ```
 
-Tests result report will be generated in ./mochawesome-report/mochawesome.html
