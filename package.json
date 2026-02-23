@@ -4,10 +4,12 @@
     "test:report": "mocha --reporter mochawesome"
   },
   "devDependencies": {
-    "chai": "^6.2.2",
+    "chai": "^4.5.0",
+    "chai-json-schema": "^1.5.1",
     "dotenv": "^17.3.1",
     "gql-query-builder": "^3.8.0",
     "json-schema": "^0.4.0",
+    "lodash": "^4.17.23",
     "mocha": "^11.7.5",
     "mochawesome": "^7.1.4",
     "pactum": "^3.9.0",

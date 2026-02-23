@@ -4,52 +4,39 @@ const {
   handler,
 } = require('pactum');
 const { expect } = require('chai');
-const { userSchema } = require('../../data/jsonSchemas/user/userSchema');   
+const { userSchema } = require('../../data/jsonSchemas/user/userSchema');
 const { requestQuery } = require('../../helpers/common');
-const { userQuery, userFieldsWithAddress } = require('../../helpers/requests/reuestMods');
+const { userQuery, userFieldsWithAddress } = require('../../helpers/requests/requestMods');
 
 describe('Get user details', () => {
-    it('should get user details successfully', async () => {
-        await pactum.spec();
+    let _spec;
 
-        function prepareReportBeforeEach() {
-            // eslint-disable-next-line func-names
-            beforeEach(function () {
-            _spec = spec();
-            _spec.records('mocha', this);
-            });
-        }
-
+    before(() => {
         handler.addSpecHandler('user', (ctx) => {
-        // eslint-disable-next-line no-shadow
+            // eslint-disable-next-line no-shadow
             const { spec, data } = ctx;
-            spec.post('/');
+            spec.post('/api');
             spec.withBody(data);
             spec.expectStatus(200);
         });
+    });
 
+    // eslint-disable-next-line func-names
+    beforeEach(function () {
+        _spec = spec();
+        _spec.records('mocha', this);
+    });
 
-        prepareReportBeforeEach();
-        
-        before(() => {
-        //  before function
-        });
+    afterEach(() => {});
 
-        afterEach(() => {
+    after(() => {});
 
-        });
-
-        after(() => {
-
-        });
-
-        it('Get user details', async () => {
-            result = await _spec.use('user', requestQuery('user', userFieldsWithAddress, { id: '1' }) ).toss();
-            expect(result.json).to.be.jsonSchema(userSchema());
-            expect(result.json.id).to.equal('1');
-            expect(result.json.name).to.equal('Bret');
-            expect(result.json.email).to.equal('Sincere@april.biz');
-        });
-
+    it('Get user details', async () => {
+        const result = await _spec.use('user', requestQuery('user', userFieldsWithAddress, { id: { value: '1', type: 'ID', required: true } })).toss();
+        const user = result.json.data.user;
+        expect(user).to.be.jsonSchema(userSchema());
+        expect(user.id).to.equal('1');
+        expect(user.name).to.equal('Leanne Graham');
+        expect(user.email).to.equal('Sincere@april.biz');
     });
 });

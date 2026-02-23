@@ -1,3 +1,5 @@
-spec: tests/**/*.spec.js
-require: dotenv/config
+spec: tests/queries/*.spec.js
+require:
+  - dotenv/config
+  - tests/setup.js
 timeout: 10000

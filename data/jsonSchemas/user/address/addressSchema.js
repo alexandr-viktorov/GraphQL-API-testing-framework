@@ -1,4 +1,4 @@
-const {geoSchema} = require('../geoSchema');
+const {geoSchema} = require('./geoSchema');
 const addressSchema = (geo = geoSchema) => ({
     required: ['geo'],
     type: 'object',

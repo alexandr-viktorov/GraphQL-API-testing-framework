@@ -1,5 +1,4 @@
 const { query, mutation, subscription } = require('gql-query-builder');
-const Web3 = require('web3');
 const { spec } = require('pactum');
 
 /**
@@ -66,7 +65,7 @@ const prepareCustomResponseSchema = (queryParams, responseModel) => {
  * @param {Array.<String>} excludeFields 
  * @returns 
  */
-const getFieldsFromSchema = (schema, excludeFields) => Object.keys(schema.properties).filter((key) => !excludeFields.includes(key));
+const getFieldsFromSchema = (schema, excludeFields = []) => Object.keys(schema.properties).filter((key) => !excludeFields.includes(key));
 
 /**
  * @description Combine fields from different schemas, use with .expectJsonSchema
